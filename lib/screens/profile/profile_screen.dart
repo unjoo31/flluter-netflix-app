@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix/constants.dart';
+import 'package:netflix/screens/profile/components/add_card.dart';
+import 'package:netflix/screens/profile/components/profile_card.dart';
 
 class ProfileScreen extends StatelessWidget {
   static String routeName = "/profile";
@@ -27,6 +29,17 @@ class ProfileScreen extends StatelessWidget {
             Text(
               "모두의 플레이를 시청할 프로필을 선택하세요.",
               style: TextStyle(color: Colors.white, fontSize: 18.0),
+            ),
+            const SizedBox(height: 25.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Wrap(
+                spacing: 25.0,
+                children: [
+                  ProfileCard(),
+                  AddCard(),
+                ],
+              ),
             ),
           ],
         ),

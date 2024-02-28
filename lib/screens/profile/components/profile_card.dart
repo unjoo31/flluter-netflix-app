@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/screens/main_screens.dart';
 
 class ProfileCard extends StatelessWidget {
   @override
@@ -21,7 +22,9 @@ class ProfileCard extends StatelessWidget {
           )
         ],
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, MainScreens.routeName);
+      },
     );
   }
 }
