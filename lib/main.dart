@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/routes.dart';
+import 'package:netflix/screens/splash/splash_screen.dart';
+import 'package:netflix/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Netflix());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Netflix extends StatelessWidget {
+  const Netflix({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: theme(),
+      initialRoute: SplashScreen.routeName,
+      routes: route,
+    );
   }
 }
