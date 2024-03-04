@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:netflix/screens/components/label_icon.dart';
+import 'package:netflix/screens/components/play_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,7 +64,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Container(height: 1000.0),
+            child: Container(
+              height: (appSize.height * 0.6),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "오늘 한국에서 콘텐츠 순위 1위",
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                  SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      LabelIcon(
+                        icon: FontAwesomeIcons.plus,
+                        label: "내가 찜한 콘텐츠",
+                      ),
+                      PlayButton(width: 80.0),
+                      LabelIcon(
+                        icon: Icons.info_outline,
+                        label: "내정보",
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30.0),
+                ],
+              ),
+            ),
           ),
         ],
       ),
