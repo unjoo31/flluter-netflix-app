@@ -22,11 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
       "assets/images/minari_poster.jpg",
       "assets/images/the_book_of_fish_poster.jpg",
     ];
+    // 1) 컨트롤러 추가하기
+    // 스크롤 뷰 위치를 제어할 수 있는 컨트롤러
     ScrollController _backController = new ScrollController();
     ScrollController _frontController = new ScrollController();
 
+    // 2) 전체 코드를 Stack으로 감싸기
     return Stack(
       children: [
+        // 3) 배경(배너 영역)을 SingleChildScrollView로 만들어서 Stack의 첫번째 자식으로 추가하기
         SingleChildScrollView(
           controller: _backController,
           child: Column(
@@ -65,7 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         SafeArea(
+          // 4) 하단 영역의 경우 CustomScrollView를 NotificationListner로 감싸서 스크롤 이벤트를 감지할 수 있게 만들기
           child: NotificationListener(
+            // 스크롤 이벤트가 일어날 때마다 스크롤 위치를 읽어줌
             onNotification: (ScrollNotification scrollInfo) {
               if (_frontController.offset <= appSize.height) {
                 _backController.jumpTo(_frontController.offset);
@@ -75,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
             child: CustomScrollView(
+              // 5) CustomScrollView안에 controller 속성으로 컨트롤러 지정하기
               controller: _frontController,
               slivers: [
                 SliverAppBar(
