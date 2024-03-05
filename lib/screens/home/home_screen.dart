@@ -22,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
       "assets/images/minari_poster.jpg",
       "assets/images/the_book_of_fish_poster.jpg",
     ];
+    ScrollController _backController = new ScrollController();
+    ScrollController _frontController = new ScrollController();
 
     return SafeArea(
       child: CustomScrollView(
