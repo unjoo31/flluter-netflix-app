@@ -65,164 +65,175 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                leading: Center(
-                  child: Text(
-                    "M",
-                    style: TextStyle(
-                      fontSize: 26.0,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                actions: [
-                  Icon(FontAwesomeIcons.chromecast),
-                  SizedBox(width: 25.0),
-                  Icon(FontAwesomeIcons.search),
-                  SizedBox(width: 25.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 14.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5.0),
-                      child: Image(
-                        image: AssetImage("assets/images/dog.jpg"),
+          child: NotificationListener(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (_frontController.offset <= appSize.height) {
+                _backController.jumpTo(_frontController.offset);
+                return true;
+              } else {
+                return false;
+              }
+            },
+            child: CustomScrollView(
+              controller: _frontController,
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  leading: Center(
+                    child: Text(
+                      "M",
+                      style: TextStyle(
+                        fontSize: 26.0,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  SizedBox(width: 15.0),
-                ],
-              ),
-              SliverAppBar(
-                titleTextStyle: TextStyle(fontSize: 18.0),
-                automaticallyImplyLeading: false,
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent,
-                pinned: true,
-                centerTitle: true,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("TV 프로그램"),
-                    Text("영화"),
-                    Text("내가 찜한 콘텐츠"),
+                  actions: [
+                    Icon(FontAwesomeIcons.chromecast),
+                    SizedBox(width: 25.0),
+                    Icon(FontAwesomeIcons.search),
+                    SizedBox(width: 25.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 14.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Image(
+                          image: AssetImage("assets/images/dog.jpg"),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 15.0),
                   ],
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: (appSize.height * 0.6),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                SliverAppBar(
+                  titleTextStyle: TextStyle(fontSize: 18.0),
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  pinned: true,
+                  centerTitle: true,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        "오늘 한국에서 콘텐츠 순위 1위",
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                      SizedBox(height: 20.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          LabelIcon(
-                            icon: FontAwesomeIcons.plus,
-                            label: "내가 찜한 콘텐츠",
-                          ),
-                          PlayButton(width: 80.0),
-                          LabelIcon(
-                            icon: Icons.info_outline,
-                            label: "내정보",
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 30.0),
+                      Text("TV 프로그램"),
+                      Text("영화"),
+                      Text("내가 찜한 콘텐츠"),
                     ],
                   ),
                 ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.only(bottom: 40.0, left: 10.0),
-                sliver: SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Container(
-                    height: 200.0,
+                    height: (appSize.height * 0.6),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                            text: "오늘 한국의 ",
-                            children: [
-                              TextSpan(
-                                text: "TOP 10",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(text: " 콘텐츠"),
-                            ],
-                            style: TextStyle(fontSize: 18.0),
-                          ),
+                        Text(
+                          "오늘 한국에서 콘텐츠 순위 1위",
+                          style: TextStyle(fontSize: 16.0),
                         ),
-                        SizedBox(height: 10.0),
-                        Expanded(
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: List.generate(
-                              posters.length,
-                              (index) => RankPoster(
-                                rank: (index + 1).toString(),
-                                posterUrl: posters[index],
-                              ),
+                        SizedBox(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            LabelIcon(
+                              icon: FontAwesomeIcons.plus,
+                              label: "내가 찜한 콘텐츠",
                             ),
-                          ),
+                            PlayButton(width: 80.0),
+                            LabelIcon(
+                              icon: Icons.info_outline,
+                              label: "내정보",
+                            ),
+                          ],
                         ),
+                        SizedBox(height: 30.0),
                       ],
                     ),
                   ),
                 ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.only(bottom: 40.0, left: 10.0),
-                sliver: SliverToBoxAdapter(
-                  child: Container(
-                    height: 200.0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "TV",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 40.0, left: 10.0),
+                  sliver: SliverToBoxAdapter(
+                    child: Container(
+                      height: 200.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: "오늘 한국의 ",
+                              children: [
+                                TextSpan(
+                                  text: "TOP 10",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(text: "프로그램·로맨스"),
-                            ],
-                            style: TextStyle(fontSize: 18.0),
+                                TextSpan(text: " 콘텐츠"),
+                              ],
+                              style: TextStyle(fontSize: 18.0),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10.0),
-                        Expanded(
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: List.generate(
-                              posters.length,
-                              (index) => Poster(
-                                posterUrl: posters[index],
+                          SizedBox(height: 10.0),
+                          Expanded(
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: List.generate(
+                                posters.length,
+                                (index) => RankPoster(
+                                  rank: (index + 1).toString(),
+                                  posterUrl: posters[index],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 40.0, left: 10.0),
+                  sliver: SliverToBoxAdapter(
+                    child: Container(
+                      height: 200.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "TV",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                TextSpan(text: "프로그램·로맨스"),
+                              ],
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Expanded(
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: List.generate(
+                                posters.length,
+                                (index) => Poster(
+                                  posterUrl: posters[index],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
