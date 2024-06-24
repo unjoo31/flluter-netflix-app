@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix/screens/components/label_icon.dart';
 import 'package:netflix/screens/components/play_button.dart';
+import 'package:netflix/screens/components/small_sub_text.dart';
 import 'package:netflix/screens/home/components/poster.dart';
 import 'package:netflix/screens/home/components/rank_poster.dart';
 
@@ -138,9 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       showModalBottomSheet(
                         context: context,
                         // builder에서 리턴되는 위젯이 BottomSheet에 그려지게 됨
-                        builder: (BuildContext context) {
-                          return Container();
-                        },
+                        builder: _buildInfoBottomSheet,
                       );
                     },
                     child: Container(
@@ -256,6 +255,140 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoBottomSheet(BuildContext context) {
+    // BottomSheet는 기본적으로 화면의 절반 정도를 차지함
+    // 안의 내용만큼만 크기를 차지하도록 줄이고 싶을 때 Wrap으로 감싸주면 크기가 줄어듬
+    return Wrap(
+      children: [
+        Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Color(0xFF2B2B2B),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image(
+                            image: AssetImage(
+                                "assets/images/big_buck_bunny_poster.jpg"),
+                            width: 100.0,
+                          ),
+                        ),
+                        SizedBox(width: 10.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "빅 벅 버니",
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                              Row(
+                                children: [
+                                  SmallSubText(text: "2008"),
+                                  SizedBox(width: 10.0),
+                                  SmallSubText(text: "15+"),
+                                  SizedBox(width: 10.0),
+                                  SmallSubText(text: "시즌 1개"),
+                                ],
+                              ),
+                              SizedBox(height: 8.0),
+                              Text("버니가 좋아하는 나비들 중 2마리가 죽고 "
+                                  "버니 자신에게 공격이 오자 "
+                                  "버니는 온순한 자연을 뒤로 하고 "
+                                  "2마리의 나비로 인해 복수할 계획들을 치밀히 세운다."),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        PlayButton(width: 160.0),
+                        LabelIcon(
+                          icon: FontAwesomeIcons.download,
+                          label: "저장",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        LabelIcon(
+                          icon: FontAwesomeIcons.playCircle,
+                          label: "미리보기",
+                          style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Divider(),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.info_outline),
+                                  SizedBox(width: 10.0),
+                                  Text("회차 및 상세정보"),
+                                ],
+                              ),
+                              Icon(
+                                FontAwesomeIcons.chevronRight,
+                                size: 16.0,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              right: 10.0,
+              top: 10.0,
+              child: GestureDetector(
+                onTap: () {
+                  // BottomSheet는 자신의 외부 영역을 터치하면 닫힘
+                  // 닫는 이벤트를 직접 지정하고 싶을 때는 Navigator.pop을 이용하기
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 30.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                    color: Color(0xFF525252),
+                  ),
+                  child: Icon(FontAwesomeIcons.times),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
