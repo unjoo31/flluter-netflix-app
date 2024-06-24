@@ -130,32 +130,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: Container(
-                    height: (appSize.height * 0.6),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "오늘 한국에서 콘텐츠 순위 1위",
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        SizedBox(height: 20.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            LabelIcon(
-                              icon: FontAwesomeIcons.plus,
-                              label: "내가 찜한 콘텐츠",
-                            ),
-                            PlayButton(width: 80.0),
-                            LabelIcon(
-                              icon: Icons.info_outline,
-                              label: "내정보",
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 30.0),
-                      ],
+                  child: GestureDetector(
+                    // GestureDetector : 기본적으로 빈 공간이 아닌 위젯을 터치했을 때 동작함
+                    // 빈 공간을 터치해도 영역 안이라면 이벤트가 일어나도록 하기 위해 옵션 지정함
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        // builder에서 리턴되는 위젯이 BottomSheet에 그려지게 됨
+                        builder: (BuildContext context) {
+                          return Container();
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: (appSize.height * 0.6),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "오늘 한국에서 콘텐츠 순위 1위",
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          SizedBox(height: 20.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              LabelIcon(
+                                icon: FontAwesomeIcons.plus,
+                                label: "내가 찜한 콘텐츠",
+                              ),
+                              PlayButton(width: 80.0),
+                              LabelIcon(
+                                icon: Icons.info_outline,
+                                label: "내정보",
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 30.0),
+                        ],
+                      ),
                     ),
                   ),
                 ),
