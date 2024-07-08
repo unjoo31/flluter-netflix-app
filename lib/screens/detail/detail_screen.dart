@@ -21,6 +21,8 @@ class _DetailScreenState extends State<DetailScreen> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
 
+  // 비동기로 데이터를 불러오기 위해서 async / await를 사용함
+  // Future : 지금은 데이터가 없지만 미래에 데이터가 있을 거라고 알려주는 클래스
   Future<void> initializePlayer() async {
     _videoPlayerController = VideoPlayerController.network(
         "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
