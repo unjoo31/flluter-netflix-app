@@ -90,8 +90,11 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
           Expanded(
             child: DefaultTabController(
-              length: 2,
+              // DefaultTabController : 탭바를 사용하기 위해서 생성
+              length: 2, // length 속성 : 2개의 탭바를 생성한다고 지정함
               child: NestedScrollView(
+                // NestedScrollView : headerSliverBuilder와 body 두 개의 스크롤 영역으로 구분
+                // headerSliverBuilder : 탭바를 기준으로 탭바까지 / body : 탭바의 상세화면이 들어있는 TabBarView까지 넣기
                 headerSliverBuilder: (context, value) {
                   return [
                     SliverToBoxAdapter(
@@ -215,7 +218,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               top: BorderSide(color: kLightColor),
                             ),
                           ),
-                          // 3
+                          // TabBar는 하단에 보여지는 메뉴를 알려주는 선이 있음. indicator 옵션을 이용하여 이 선을 커스텀할 수 있음
                           child: TabBar(
                             indicator: UnderlineTabIndicator(
                               borderSide:
@@ -238,7 +241,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ];
                 },
                 body: Container(
-                  // 4
+                  // TabBarView : 위에서 지정한 탭바의 개수와 자식의 개수가 동일해야함
                   child: TabBarView(
                     children: [
                       Container(),
