@@ -6,6 +6,7 @@ import 'package:netflix/models/episode.dart';
 import 'package:netflix/screens/components/label_icon.dart';
 import 'package:netflix/screens/components/play_button.dart';
 import 'package:netflix/screens/components/small_sub_text.dart';
+import 'package:netflix/screens/detail/components/episode_card.dart';
 import 'package:video_player/video_player.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -244,7 +245,33 @@ class _DetailScreenState extends State<DetailScreen> {
                   // TabBarView : 위에서 지정한 탭바의 개수와 자식의 개수가 동일해야함
                   child: TabBarView(
                     children: [
-                      Container(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 25.0,
+                        ),
+                        child: ListView(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Text(
+                                "시즌 1",
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                            ),
+                            SizedBox(height: 20.0),
+                            Column(
+                              children: List.generate(
+                                episodes.length,
+                                (index) => EpisodeCard(
+                                  episode: episodes[index],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Container(),
                     ],
                   ),
