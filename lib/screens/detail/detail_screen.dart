@@ -272,7 +272,25 @@ class _DetailScreenState extends State<DetailScreen> {
                           ],
                         ),
                       ),
-                      Container(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: ListView(
+                          children: [
+                            Wrap(
+                              runSpacing: 8.0,
+                              alignment: WrapAlignment.spaceBetween,
+                              children: List.generate(
+                                posters.length,
+                                (index) => Image(
+                                  image: AssetImage(posters[index]),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
