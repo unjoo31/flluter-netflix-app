@@ -17,7 +17,7 @@ class ProfileCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            "언주",
+            "도글띠",
             style: TextStyle(color: Colors.white),
           )
         ],
