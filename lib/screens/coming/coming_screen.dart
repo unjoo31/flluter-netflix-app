@@ -1,6 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:netflix/screens/components/label_icon.dart';
 import 'package:video_player/video_player.dart';
 
 class ComingScreen extends StatefulWidget {
@@ -82,6 +83,40 @@ class _ComingScreenState extends State<ComingScreen> {
                       Text('Loading'),
                     ],
                   ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 20.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "Bid Buck Bunny",
+                          style: TextStyle(fontSize: 25.0, color: Colors.white),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            LabelIcon(
+                                icon: FontAwesomeIcons.solidBell,
+                                label: "알림 받기"),
+                            LabelIcon(icon: FontAwesomeIcons.info, label: "정보"),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
