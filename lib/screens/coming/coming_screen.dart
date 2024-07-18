@@ -17,7 +17,7 @@ class _ComingScreenState extends State<ComingScreen> {
 
   Future<void> initializePlayer() async {
     _videoPlayerController = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4');
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'); // 비디오 파일 경로
     await Future.wait([_videoPlayerController.initialize()]);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
