@@ -1,8 +1,11 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:netflix/models/episode.dart';
 import 'package:netflix/screens/components/label_icon.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../constants.dart';
 
 class ComingScreen extends StatefulWidget {
   @override
@@ -113,6 +116,43 @@ class _ComingScreenState extends State<ComingScreen> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Text("4월 10일 공개"),
+                SizedBox(height: 5.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Text(
+                    "빅 벅 버니",
+                    style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  ),
+                ),
+                Text(episodes[0].description),
+                SizedBox(height: 5.0),
+                Row(
+                  children: List.generate(
+                    genres.length,
+                    (index) {
+                      // 1
+                      if (index == 0) {
+                        return Text(genres[index],
+                            style: TextStyle(
+                                color: kTextLightColor, fontSize: 12.0));
+                      } else {
+                        return Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Text("·"),
+                            ),
+                            Text(genres[index],
+                                style: TextStyle(
+                                    color: kTextLightColor, fontSize: 12.0))
+                          ],
+                        );
+                      }
+                    },
                   ),
                 ),
               ],
