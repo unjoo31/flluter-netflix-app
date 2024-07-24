@@ -12,7 +12,7 @@ class RotateImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 자식 위제슬 회전시키는 역할을 함
+    // 자식 위젯을 회전시키는 역할을 함
     return Transform.rotate(
       // angle 속성에는 임의의 숫자만 입력해도 회전시킬 수 있지만 내가 원하는 각도만큼만 회전시키키 위해서 각도 * pi / 180 공식을 이용
       angle: degree * 3.14 / 180,
